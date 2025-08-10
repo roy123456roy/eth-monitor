@@ -13,13 +13,13 @@ const THRESHOLD = 0.5;
 // 上一次价格
 let lastPrice = null;
 
-// 获取 ETH 美元价格
+// 获取 ETH 美元价格（来自 Binance）
 async function getETHPrice() {
     try {
-        const res = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
-            params: { ids: 'ethereum', vs_currencies: 'usd' }
+        const res = await axios.get('https://api.binance.com/api/v3/ticker/price', {
+            params: { symbol: 'ETHUSDT' }
         });
-        return res.data.ethereum.usd;
+        return Number(res.data.price);
     } catch (err) {
         console.error("获取价格失败:", err.message);
         return null;
