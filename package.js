@@ -1,0 +1,12 @@
+{
+    "name": "eth-monitor",
+    "version": "1.0.0",
+    "description": "企业微信 ETH 价格波动提醒工具",
+    "main": "index.js",
+    "scripts": {
+    "start": "node index.js"
+},
+    "dependencies": {
+    "axios": "^1.6.7"
+}
+}
