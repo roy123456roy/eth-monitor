@@ -13,13 +13,13 @@ const THRESHOLD = 0.5;
 // 上一次价格
 let lastPrice = null;
 
-// 获取 ETH 美元价格（来自 Binance）
+// 获取 ETH 美元价格（Binance）
 async function getETHPrice() {
     try {
         const res = await axios.get('https://api.binance.com/api/v3/ticker/price', {
             params: { symbol: 'ETHUSDT' }
         });
-        return Number(res.data.price);
+        return parseFloat(res.data.price);
     } catch (err) {
         console.error("获取价格失败:", err.message);
         return null;
@@ -60,7 +60,7 @@ async function monitor() {
     lastPrice = price;
 }
 
-// 每分钟执行一次
+// 每分钟执行一次（Worker 模式）
 console.log("⏳ ETH 价格波动监控已启动，每分钟检测一次...");
 monitor();
 setInterval(monitor, 60 * 1000);
